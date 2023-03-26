@@ -1,12 +1,12 @@
-use diesel::prelude::*;
+use crate::schema::messages;
 use crate::schema::users;
-
+use diesel::prelude::*;
 
 /* User Model */
 #[derive(Queryable)]
 pub struct User {
     pub user_id: i32,
-    pub username: String
+    pub username: String,
 }
 
 #[derive(Insertable)]
@@ -25,6 +25,7 @@ pub struct Message {
 }
 
 #[derive(Insertable)]
+#[diesel(table_name = messages)]
 pub struct NewMessage<'a> {
     pub message_id: &'a i32,
     pub text: &'a String,
